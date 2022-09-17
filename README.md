@@ -7,13 +7,13 @@ General Objectives:
 
 Collaborators:
 
-+ Diana Fountaine [Diana Fountaine](https://github.com/dianafountaine)
++ [Diana Fountaine](https://github.com/dianafountaine)
 
-+ Etta T. Phung [Etta Phung](https://github.com/EttaPhung)
++ [Etta Phung](https://github.com/EttaPhung)
 
-+ Belara Hossain [Belara Houssain](https://github.com/Belara317)
++ [Belara Houssain](https://github.com/Belara317)
 
-+ T. Simone Solomon [Simone Solomon](https://github.com/GenUSA-Learners/jwd-final-project)
++ [Simone Solomon](https://github.com/GenUSA-Learners/jwd-final-project)
 
 
 Important Links:
