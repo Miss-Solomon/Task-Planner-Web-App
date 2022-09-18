@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sprint 1</title>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="">
+    
+</head>
+<body>
+    <div class="header">
+        <h1>Task List</h1>
+    </div>
+        
+    <form method="get">
+    <table>
+        <tr>
+            <td colspan="2">
+                
+                <h2>Add New Task:</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+        
+                <label for="task name">Task Name:</label>
+                <br>
+                <input id="task name" type="text" name="task name" value="task name">
+                <br><br>
+                <label for="person">Assigned To:</label>
+                <br>
+                <input id="person" type="text" name="assigned to" value="Person Responsible">
+                <br><br>
+                <label for="date">Due Date:</label>
+                <input id="date" type="date">
+            </td>
+            <td class="col-top">
+                <label for="description">Task Description:</label>
+                <br>
+                <textarea id="description"  name="description" rows="3" cols="25">Task Description</textarea>
+                <br><br>
+                <label for="status">Task Status</label>
+                <br>
+                <select id="status">
+                    <option>To Do</option>
+                    <option>Doing</option>
+                    <option>Review</option>
+                    <option>Done</option>
+                </select>
+                <input type="submit" value="Add Task" class="add-button">
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
