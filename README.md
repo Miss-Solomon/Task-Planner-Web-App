@@ -13,7 +13,9 @@ Collaborators:
 
 + [Belara Hossain](https://github.com/Belara317)
 
-+ [Simone Solomon](https://github.com/GenUSA-Learners/jwd-final-project)
++ [Simone Solomon](https://github.com/Miss-Solomon)
+
++ [Wun Kuen](https://github.com/wunkuen)
 
 
 Important Links:
