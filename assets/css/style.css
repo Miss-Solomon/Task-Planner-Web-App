@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+    background-color: rgb(185, 185, 184);
+    width: 50%;
+}
+
+.task {
+    color: white;
+    background-color: blue;
+}
+
+.heading2 {
+    text-align: center;
+    background-color: rgb(185, 185, 184);
+    width: 50%;
+}
+
+td {
+    padding: 10px;
+}
+
+.a {
+    color: black;
+    background-color: rgb(134, 207, 134); 
+}
+
+.b {
+    color: black;
+    background-color: rgb(250, 214, 182); 
+
+}
+
+.c {
+    color: black;
+    background-color: rgb(235, 125, 125);
+}
+
+.d  {
+    color: black;
+    background-color: rgb(196, 192, 192);
+}
