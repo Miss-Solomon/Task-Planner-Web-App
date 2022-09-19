@@ -1,18 +1,11 @@
-h1 {
+h1,h2 {
     text-align: center;
     background-color: rgb(185, 185, 184);
-    width: 50%;
 }
 
 .task {
     color: white;
     background-color: blue;
-}
-
-.heading2 {
-    text-align: center;
-    background-color: rgb(185, 185, 184);
-    width: 50%;
 }
 
 td {
