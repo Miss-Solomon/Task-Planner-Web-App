@@ -38,5 +38,5 @@ Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraE
   <li>Run git add filename or --all</li>
   <li>Run git status to see changes</li>
   <li>Run git commit -m 'message'</li>
-  <li>Run git push -u origin main</li>
+  <li>Run git push -u -f origin main</li>
 </ol>
