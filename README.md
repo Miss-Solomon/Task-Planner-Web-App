@@ -30,6 +30,7 @@ Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraE
   <li>Run git checkout main</li>
   <li>Run git pull</li>
   <li>Run git checkout working</li>
+  <li>Run git merge main</li>
 </ol>
 
 ## Done working on your branch? Follow these steps to add your code to the production (main) branch:
