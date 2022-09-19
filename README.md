@@ -24,12 +24,19 @@ Moqups [Wireframe](https://app.moqups.com/QZt6Mwgr3eqnjAnnn2MkASAnZilW5Sgn/view/
 
 Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraEcL7FQjxeMVeDWfjbypYRcSrXCyAVPtHo/edit?usp=sharing).
 
-## Need to pull new changes? Follow the steps below to make sure you are working on your own branch:
+## Create a new branch for your work
+
+<ol>
+  <li>Run git checkout -b branchname</li>
+</ol>
+
+
+## Need to pull new changes? Follow the steps below: 
 
 <ol>
   <li>Run git checkout main</li>
   <li>Run git pull</li>
-  <li>Run git checkout working</li>
+  <li>Run git checkout branchname</li>
   <li>Run git merge main</li>
 </ol>
 
@@ -39,5 +46,6 @@ Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraE
   <li>Run git add filename or --all</li>
   <li>Run git status to see changes</li>
   <li>Run git commit -m "message"</li>
-  <li>Run git push -u -f origin main</li>
+  <li>Run git push origin branchname</li>
+  <li>Delete branch after merge</li>
 </ol>
