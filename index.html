@@ -13,81 +13,114 @@
 </head>
 
 <body>
-    <header>
+    <header class="col-12">
         <h1>Task List</h1>
     </header>
     
-    <br><br>
+    <section class="col-12">
 
-    <!--Form-->
-    <form method="get">
+        <!--Form-->
+        <form method="get">
 
-    <!--Form where you type the task name-->
-    <table>
-        <tr>
-            <td colspan="2">
-                
-                <h2>Add New Task:</h2>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="task_name">Task Name</label><br>
-                <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
+            <!--Form where you type the task name-->
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <h2>Add New Task:</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="task_name">Task Name</label><br>
+                            <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
 
-                <!--Form where you type who the task is assigned To-->
-                <label for="task_person">Assigned To:</label><br>
-                <input type="text" id="task_person" name="task_person" value="Assigned To"><br><br>
+                            <!--Form where you type who the task is assigned To-->
+                            <label for="task_person">Assigned To:</label><br>
+                            <input type="text" id="task_person" name="task_person" value="Assigned To"><br><br>
 
+                        
+
+                            <!--Form where you pick the date-->
+                            <label for="task_date">Due Date:</label><br>
+                            <input type="date" id="task_date" name="task_date">
+                        </div>
+                        <div class="col-6">
+
+                            <!--Form where you type the task description-->
+                            <label for="task_description">Task Description</label><br>
+                            <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
+                        
+                        
+                            <!--Form where you pick the Status of the Task-->
+                            <label for="task_status">Task Status</label><br>
+                            <select name="task_status" id="task_status">
+                                <option value="to_do">To Do</option>
+                                <option value="doing">Doing</option>
+                                <option value="review">Review</option>
+                                <option value="done">Done</option>
+                            </select>
+                        
+
+                            <!--Button where you submit the task-->
+                                <input type="submit" value="Add Task" class="task"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
 
-                <!--Form where you pick the date-->
-                <label for="task_date">Due Date:</label><br>
-                <input type="date" id="task_date" name="task_date"><br><br>
-
-            </td>
-        
-            <td>
-                <!--Form where you type the task description-->
-                <label for="task_description">Task Description</label><br>
-                <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
-    
-                <!--Form where you pick the Status of the Task-->
-                <label for="task_status">Task Status</label><br>
-                <select name="task_status" id="task_status">
-                    <option value="to_do">To Do</option>
-                    <option value="doing">Doing</option>
-                    <option value="review">Review</option>
-                    <option value="done">Done</option>
-                </select>
-
-                <!--Button where you submit the task-->
-                    <input type="submit" value="Add Task" class="task"/> <br><br>
-
-            </td>
-        </tr>
-    </table>
-    
-
-     
-    </form>
-
+            
+        </form>
+    </section>
 
     <!--Section the Task Cards will go-->
+    <section class="col 12">
+        <h2>All Tasks:</h2>
+            <!--task cards using bootstrap-->
+            <div class="row px-1">
+                <div class="col-3 px-0">
+                    <h6 class="bg-success text-center">To Do</h6>
+                    <div class="card border-0">
+                        <h5 class="card-title text-warning">Due Date:</h5>
+                        <h4 class="card-subtitle">Task Name:</h4>
+                        <h6 class="card-subtitle">Assigned to:</h6>
+                        <p class="bg-success">Task Description<br><br><br></p>
+                    </div>   
 
-    <h2 class="heading2">All Tasks:</h2>
+                </div>
+                <div class="col-3 px-0">
+                    <h6 class="bg-warning text-center">Doing</h6>
+                    <div class="card border-0">
+                        <h5 class="card-title text-warning">Due Date:</h5>
+                        <h4 class="card-subtitle">Task Name:</h4>
+                        <h6 class="card-subtitle">Assigned to:</h6>
+                        <p class="bg-warning">Task Description<br><br><br></p>
+                     </div>  
 
-    <!--The headings all in a row: To Do, Doing, Review, Done. Temporary as table unless someone else has another idea-->
-   <table style="width: 50%;">
-        <tr class="task">
-            <td class="a">To Do</td>
-            <td class="b">Doing</td>
-            <td class="c">Review</td>
-            <td class="d">Done</td>
-        </tr>
-   </table>
-    <!--The cards themselves go here (or somewhere else, I don't know where they go)-->
-    
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-</body>
+                </div>
+                <div class="col-3 px-0">
+                    <h6 class="bg-danger text-center">Review</h6>
+                    <div class="card border-0">
+                        <h5 class="card-title text-warning">Due Date:</h5>
+                        <h4 class="card-subtitle">Task Name:</h4>
+                        <h6 class="card-subtitle">Assigned to:</h6>
+                        <p class="bg-danger">Task Description<br><br><br></p>
+                     </div>  
+
+                </div>
+                <div class="col-3 px-0">
+                    <h6 class="bg-secondary text-center">Done</h6>
+                    <div class="card border-0">
+                        <h5 class="card-title text-warning">Due Date:</h5>
+                        <h4 class="card-subtitle">Task Name:</h4>
+                        <h6 class="card-subtitle">Assigned to:</h6>
+                        <p class="bg-secondary">Task Description<br><br><br></p>
+                     </div>  
+
+                </div>
+            </div>
+        
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </section>    
+  </body>
+</html>
