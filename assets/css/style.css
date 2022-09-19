@@ -1,3 +1,7 @@
+* {
+    font-family: 'Cutive', 'Noto Serif HK', 'Cutive Mono', serif;
+}
+
 h1,h2 {
     text-align: center;
     background-color: rgb(185, 185, 184);

@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Our Cutive and Cutive Mono Font Link, needs to be before CSS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&family=Cutive+Mono&family=Noto+Serif+HK:wght@200&display=swap" rel="stylesheet"> 
+    <!--Website Title-->
     <title>Task List</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -30,7 +35,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label for="task_name">Task Name</label><br>
+                            <label for="task_name">Task Name:</label><br>
                             <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
 
                             <!--Form where you type who the task is assigned To-->
@@ -50,7 +55,7 @@
                             <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
                         
                         
-                            <!--Form where you pick the Status of the Task-->
+                            <!--Dropdown where you pick the Status of the Task-->
                             <label for="task_status">Task Status</label><br>
                             <select name="task_status" id="task_status">
                                 <option value="to_do">To Do</option>
@@ -94,7 +99,7 @@
                         <h4 class="card-subtitle">Task Name:</h4>
                         <h6 class="card-subtitle">Assigned to:</h6>
                         <p class="bg-warning">Task Description<br><br><br></p>
-                     </div>  
+                    </div>  
 
                 </div>
                 <div class="col-3 px-0">
@@ -104,7 +109,7 @@
                         <h4 class="card-subtitle">Task Name:</h4>
                         <h6 class="card-subtitle">Assigned to:</h6>
                         <p class="bg-danger">Task Description<br><br><br></p>
-                     </div>  
+                    </div>  
 
                 </div>
                 <div class="col-3 px-0">
@@ -114,7 +119,7 @@
                         <h4 class="card-subtitle">Task Name:</h4>
                         <h6 class="card-subtitle">Assigned to:</h6>
                         <p class="bg-secondary">Task Description<br><br><br></p>
-                     </div>  
+                    </div>  
 
                 </div>
             </div>
@@ -122,5 +127,5 @@
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </section>    
-  </body>
+</body>
 </html>
