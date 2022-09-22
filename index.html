@@ -18,114 +18,159 @@
 </head>
 
 <body>
-    <header class="col-12">
-        <h1>Task List</h1>
-    </header>
-    
-    <section class="col-12">
-
-        <!--Form-->
-        <form method="get">
-
-            <!--Form where you type the task name-->
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <h2>Add New Task:</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="task_name">Task Name:</label><br>
-                            <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
-
-                            <!--Form where you type who the task is assigned To-->
-                            <label for="task_person">Assigned To:</label><br>
-                            <input type="text" id="task_person" name="task_person" value="Assigned To"><br><br>
-
-                        
-
-                            <!--Form where you pick the date-->
-                            <label for="task_date">Due Date:</label><br>
-                            <input type="date" id="task_date" name="task_date">
-                        </div>
-                        <div class="col-6">
-
-                            <!--Form where you type the task description-->
-                            <label for="task_description">Task Description</label><br>
-                            <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
-                        
-                        
-                            <!--Dropdown where you pick the Status of the Task-->
-                            <label for="task_status">Task Status</label><br>
-                            <select name="task_status" id="task_status">
-                                <option value="to_do">To Do</option>
-                                <option value="doing">Doing</option>
-                                <option value="review">Review</option>
-                                <option value="done">Done</option>
-                            </select>
-                        
-
-                            <!--Button where you submit the task-->
-                                <input type="submit" value="Add Task" class="task"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
-            
-        </form>
-    </section>
-
-    <!--Section the Task Cards will go-->
-    <section class="col 12">
-        <h2>All Tasks:</h2>
-            <!--task cards using bootstrap-->
-            <div class="row px-1">
-                <div class="col-3 px-0">
-                    <h6 class="bg-success text-center">To Do</h6>
-                    <div class="card border-0">
-                        <h5 class="card-title text-warning">Due Date:</h5>
-                        <h4 class="card-subtitle">Task Name:</h4>
-                        <h6 class="card-subtitle">Assigned to:</h6>
-                        <p class="bg-success">Task Description<br><br><br></p>
-                    </div>   
-
-                </div>
-                <div class="col-3 px-0">
-                    <h6 class="bg-warning text-center">Doing</h6>
-                    <div class="card border-0">
-                        <h5 class="card-title text-warning">Due Date:</h5>
-                        <h4 class="card-subtitle">Task Name:</h4>
-                        <h6 class="card-subtitle">Assigned to:</h6>
-                        <p class="bg-warning">Task Description<br><br><br></p>
-                    </div>  
-
-                </div>
-                <div class="col-3 px-0">
-                    <h6 class="bg-danger text-center">Review</h6>
-                    <div class="card border-0">
-                        <h5 class="card-title text-warning">Due Date:</h5>
-                        <h4 class="card-subtitle">Task Name:</h4>
-                        <h6 class="card-subtitle">Assigned to:</h6>
-                        <p class="bg-danger">Task Description<br><br><br></p>
-                    </div>  
-
-                </div>
-                <div class="col-3 px-0">
-                    <h6 class="bg-secondary text-center">Done</h6>
-                    <div class="card border-0">
-                        <h5 class="card-title text-warning">Due Date:</h5>
-                        <h4 class="card-subtitle">Task Name:</h4>
-                        <h6 class="card-subtitle">Assigned to:</h6>
-                        <p class="bg-secondary">Task Description<br><br><br></p>
-                    </div>  
-
-                </div>
-            </div>
+    <!--Div element with bootstrap class to create a margin around the entire app-->
+    <div class="my-2 mx-2">
+        <header class="col-12">
+            <h1>Task List</h1>
+        </header>
         
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    </section>    
+        <section class="col-12">
+
+            <!--Form-->
+            <form method="get">
+
+                <!--Form where you type the task name-->
+                <div class="row mx-0">
+                    <div class="col">
+                        <div class="row">
+                            <h2 class="my-2">Add New Task:</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="task_name">Task Name:</label><br>
+                                <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
+
+                                <!--Form where you type who the task is assigned To-->
+                                <label for="task_person">Assigned To:</label><br>
+                                <input type="text" id="task_person" name="task_person" value="Assigned To"><br><br>
+
+                            
+
+                                <!--Form where you pick the date-->
+                                <label for="task_date">Due Date:</label><br>
+                                <input type="date" id="task_date" name="task_date">
+                            </div>
+                            <div class="col-6">
+
+                                <!--Form where you type the task description-->
+                                <label for="task_description">Task Description</label><br>
+                                <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
+                            
+                            
+                                <!--Dropdown where you pick the Status of the Task-->
+                                <label for="task_status">Task Status</label><br>
+                                <select name="task_status" id="task_status">
+                                    <option value="to_do">To Do</option>
+                                    <option value="doing">Doing</option>
+                                    <option value="review">Review</option>
+                                    <option value="done">Done</option>
+                                </select>
+                            
+
+                                <!--Button where you submit the task-->
+                                    <input type="submit" value="Add Task" class="task"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+            </form>
+        </section>
+
+        <!--Section the Task Cards will go-->
+        <section class="col 12 mx-0 mt-5">
+            <h2>All Tasks:</h2>
+            <!--Div element to set Task Cards section margin-->
+            <div class="m-2">
+                <!--task cards using bootstrap-->
+                <div class="row px-1">
+                    <!--Start of To Do's Column, this is the To Do Heading-->
+                    <div class="col-3 px-0">
+                        <h6 class="bg-success text-center">To Do</h6>
+                        <!--To Do Card Template-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date:</h5>
+                            <h4 class="card-subtitle">Task Name:</h4>
+                            <h6 class="card-subtitle">Assigned to:</h6>
+                            <p class="bg-success">Task Description<br><br><br></p>
+                        </div>
+                        <!--2 Sample To Do Cards-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date: 12/24/2022</h5>
+                            <h4 class="card-subtitle">Task Name: Rescue Peach</h4>
+                            <h6 class="card-subtitle">Assigned to: Mario</h6>
+                            <p class="bg-success">Rescue the Princess from Bowser's castle.<br><br></p>
+                        </div>
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date: 12/25/2022</h5>
+                            <h4 class="card-subtitle">Task Name: Assist Mario</h4>
+                            <h6 class="card-subtitle">Assigned to: Yoshi</h6>
+                            <p class="bg-success">No Super Mario game is complete without your favorite green dinosaur! Time for me to assist the local plumber in rescuing the princess for the 100th time!<br><br><br></p>
+                        </div>   
+                    </div>
+
+                    <!--Start of Doing's Column, this is the Doing Heading-->
+                    <div class="col-3 px-0">
+                        <h6 class="bg-warning text-center">Doing</h6>
+                        <!--Doing Card Template-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date:</h5>
+                            <h4 class="card-subtitle">Task Name:</h4>
+                            <h6 class="card-subtitle">Assigned to:</h6>
+                            <p class="bg-warning">Task Description<br><br><br></p>
+                        </div>  
+                        <!--Sample Doing Cards-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date: 12/25/2022</h5>
+                            <h4 class="card-subtitle">Task Name: Escape</h4>
+                            <h6 class="card-subtitle">Assigned to: Princess Peach</h6>
+                            <p class="bg-warning">I'm tired of Nintendo writing me as the damsel in distress. Watch me break out of here and star in my own video game once again!<br><br><br></p>
+                        </div>
+                    </div>
+
+                    <!--Start of Review's Column, this is the Review Heading-->
+                    <div class="col-3 px-0">
+                        <h6 class="bg-danger text-center">Review</h6>
+                        <!--Review Card Template-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date:</h5>
+                            <h4 class="card-subtitle">Task Name:</h4>
+                            <h6 class="card-subtitle">Assigned to:</h6>
+                            <p class="bg-danger">Task Description<br><br><br></p>
+                        </div>
+                        <!--Sample Review Cards-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date: 9/19/2022</h5>
+                            <h4 class="card-subtitle">Task Name: Castle Security</h4>
+                            <h6 class="card-subtitle">Assigned to: Toad</h6>
+                            <p class="bg-danger">Bowser keeps getting in so we must increase the castle's security. More puzzles!<br><br><br></p>
+                        </div>
+                    </div>
+
+                    <div class="col-3 px-0">
+                        <h6 class="bg-secondary text-center">Done</h6>
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date:</h5>
+                            <h4 class="card-subtitle">Task Name:</h4>
+                            <h6 class="card-subtitle">Assigned to:</h6>
+                            <p class="bg-secondary">Task Description<br><br><br></p>
+                        </div>
+                        <!--Sample Done Cards-->
+                        <div class="card border-0">
+                            <h5 class="card-title text-warning">Due Date: 9/15/2022</h5>
+                            <h4 class="card-subtitle">Task Name: Kidnap the Princess</h4>
+                            <h6 class="card-subtitle">Assigned to: Bowser</h6>
+                            <p class="bg-secondary">I'm bored of kidnapping princesses but Nintendo cannot release a new Super Mario main game without this tried and true plot.<br><br><br></p>
+                        </div>
+                    </div>
+                </div>
+            
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+            </div>
+        </section>
+    </div>    
 </body>
 </html>
