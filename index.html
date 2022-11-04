@@ -12,7 +12,7 @@
     <!--Website Title-->
     <title>Task List</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!--Our own stylesheet below-->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -27,60 +27,72 @@
         <section class="col-12">
 
             <!--Form-->
-            <form method="get">
+            <form id="taskForm" method="post">
 
-                <!--Form where you type the task name-->
                 <div class="row mx-0">
                     <div class="col">
                         <div class="row">
+                            <!--Form where you type the task name-->
                             <h2 class="my-2">Add New Task:</h2>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <label for="task_name">Task Name:</label><br>
-                                <input type="text" id="task_name" name="task_name" value="Task Name"><br><br>
+                                <input type="text" id="newTaskNameInput" name="task_name" placeholder="enter task name"><br><br>
+                                <div class="alert alert-danger nameAlert" role="alert" hidden>
+                                    Required: Please enter a task name.
+                                </div>
+
 
                                 <!--Form where you type who the task is assigned To-->
                                 <label for="task_person">Assigned To:</label><br>
-                                <input type="text" id="task_person" name="task_person" value="Assigned To"><br><br>
-
+                                <input type="text" id="newTaskPersonInput" name="task_person" placeholder="enter assignee"><br><br>
+                                <div class="alert alert-danger personAlert" role="alert" hidden>
+                                    Required: Please enter who the task is assigned to.
+                                </div>
                             
-
                                 <!--Form where you pick the date-->
                                 <label for="task_date">Due Date:</label><br>
-                                <input type="date" id="task_date" name="task_date">
+                                <input type="date" id="newTaskDateInput" name="task_date">
+                                <div class="alert alert-danger dateAlert" role="alert" hidden>
+                                    Required: Please enter a due date.
+                                </div>
                             </div>
                             <div class="col-6">
 
                                 <!--Form where you type the task description-->
                                 <label for="task_description">Task Description</label><br>
-                                <textarea rows="4" col="15" id="task_description" name="task_description" form="task_list"> Enter task description here</textarea><br><br>
+                                <textarea rows="4" col="15" id="newTaskDescriptionInput" name="task_description" form="task_list" placeholder="Enter task description here"></textarea>
+                                <div class="alert alert-danger descriptionAlert" role="alert" hidden>
+                                    Required: Please enter a task description.
+                                </div>
+                                <br><br>
                             
                             
                                 <!--Dropdown where you pick the Status of the Task-->
                                 <label for="task_status">Task Status</label><br>
-                                <select name="task_status" id="task_status">
-                                    <option value="to_do">To Do</option>
-                                    <option value="doing">Doing</option>
-                                    <option value="review">Review</option>
-                                    <option value="done">Done</option>
+                                <select name="task_status" id="newTaskStatusInput">
+                                    <option value="To Do">To Do</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Review">Review</option>
+                                    <option value="Done">Done</option>
                                 </select>
                             
 
                                 <!--Button where you submit the task-->
-                                    <input type="submit" value="Add Task" class="task"/>
+                                <button type="button" class="task btn btn-primary btn-sm" id="submitButton">Add Task</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
 
-                
+
             </form>
         </section>
 
         <!--Section the Task Cards will go-->
-        <section class="col 12 mx-0 mt-5">
+        <section class="col 12 mx-0 mt-5" id="taskCardsSection">
             <h2>All Tasks:</h2>
             <!--Div element to set Task Cards section margin-->
             <div class="m-2">
@@ -149,6 +161,7 @@
                         </div>
                     </div>
 
+                    <!--Start of Done's Column, this is the Done Heading-->
                     <div class="col-3 px-0">
                         <h6 class="bg-secondary text-center">Done</h6>
                         <div class="card border-0">
@@ -168,7 +181,9 @@
                 </div>
             
             <!-- JavaScript Bundle with Popper -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+            <!--connecting to main.js script-->
+            <script src="assets\index.js"></script>
             </div>
         </section>
     </div>    
