@@ -1,3 +1,5 @@
+//Note to console.log that this js page is linked.
+console.log("taskManager.js is linked.");
 class TaskManager {
     
     tasks;
