@@ -1,3 +1,10 @@
+
+const tm = new TaskManager();
+
+//forms
+const newTaskForm = document.querySelector("#taskForm"); 
+
+
 //form variables
 const submitButton = document.querySelector("#submitButton");
 
@@ -45,9 +52,22 @@ let validFormFieldInput = (data) => {
     } else {
         descriptionAlert.hidden = true;
     }
+
+    return false;
+}
+
+let doNotSubmit = () => {
+    return false; 
 }
 
 
 
 //submit button listening for the mouse click event
-submitButton.addEventListener("click", validFormFieldInput);
+//submitButton.addEventListener("click", validFormFieldInput);
+newTaskForm.addEventListener("submit", doNotSubmit());
+
+
+
+
+tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20');
+console.log(tm.tasks);
