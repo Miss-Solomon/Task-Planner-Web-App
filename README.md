@@ -13,6 +13,8 @@ Collaborators:
 
 + [Simone Solomon](https://github.com/Miss-Solomon)
 
++ [Sandra Okerulu](https://github.com/sandraokerulu) 
+
 
 
 Important Links:
