@@ -63,11 +63,22 @@ let doNotSubmit = () => {
 
 
 //submit button listening for the mouse click event
-//submitButton.addEventListener("click", validFormFieldInput);
-newTaskForm.addEventListener("submit", doNotSubmit());
+submitButton.addEventListener("click", validFormFieldInput);
+//newTaskForm.addEventListener("submit", doNotSubmit());
 
 
 
 
 tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20');
 console.log(tm.tasks);
+
+const tasks = tm.tasks;
+if(tasks.length > 0)
+{
+    const task = tasks[0];
+    const taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, 
+        task.dueDate, task.status);
+    
+    console.log(taskHtml);
+}
+
