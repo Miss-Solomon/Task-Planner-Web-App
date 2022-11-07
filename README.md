@@ -7,15 +7,16 @@ General Objectives:
 
 Collaborators:
 
-+ [Diana Fountaine](https://github.com/dianafountaine)
-
 + [Etta Phung](https://github.com/EttaPhung)
 
 + [Belara Hossain](https://github.com/Belara317)
 
 + [Simone Solomon](https://github.com/Miss-Solomon)
 
-+ [Wun Kuen](https://github.com/wunkuen)
++ [Sandra Okerulu](https://github.com/sandraokerulu) 
+
++ [Kidanemariam Rozario](https://github.com/Rozariokid)
+
 
 
 Important Links:

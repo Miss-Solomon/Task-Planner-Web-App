@@ -10,6 +10,9 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
     return html;
 }
 
+//Note to console.log that this js page is linked.
+console.log("taskManager.js is linked.");
+
 class TaskManager {
 
     
