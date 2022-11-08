@@ -5,7 +5,10 @@ console.log("taskManager.js is linked.");
 const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
     const html = 
 `    <div class="card border-0">
-        <h5 class="card-title text-warning">Due: ${dueDate}</h5>
+        <div class="d-grid gap-2 d-md-flex justify-content-between">
+            <h6 class="card-title text-warning">Due: ${dueDate}</h6>
+            <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+        </div>
         <h4 class="card-subtitle">${name}</h4>
         <h6 class="card-subtitle">Person: ${assignedTo}</h6>
         <p class="bg-danger">${description}<br><br><br></p>
