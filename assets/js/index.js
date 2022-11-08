@@ -64,6 +64,9 @@ let validFormFieldInput = (data) => {
         tm.addTask(newTaskName.value, newDescription.value, newPerson.value, newDate.value, newTaskStatus.value);
         console.log(tm.tasks);
 
+        //this calls the render() after the new task is added under the task list
+        tm.render();
+
         //for loop for clearing out the form after a push to new task list
         for (let i = 0; i < formInputs.length; i++) {
             formInputs[i].value = "";
@@ -73,12 +76,15 @@ let validFormFieldInput = (data) => {
         newTaskStatus.value = "To Do";
 
     } else {
+
+        //this shows up on the console log when there are errors. Just for troubleshooting purposes
         console.log("Alerts are shown. No pushing the task to the Task List.")
     };
-    //Etta: Why are we returning false here?
+    
     // return false;
 }
-//Etta what does this do?
+
+//for future references, will stop submit
 let doNotSubmit = () => {
     return false; 
 }
@@ -88,8 +94,14 @@ let doNotSubmit = () => {
 //submit button listening for the mouse click event
 submitButton.addEventListener("click", validFormFieldInput);
 
+//sample task cards for troubleshooting
+tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
+console.log(tm.tasks);
 
-tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20');
+tm.addTask('Milk', 'Get milk from Betsy', 'Sherri', '2020-09-20', "To Do");
+console.log(tm.tasks);
+
+tm.addTask('2', '222', '2222', '2020-09-20', "Review");
 console.log(tm.tasks);
 
 const tasks = tm.tasks;
@@ -102,3 +114,6 @@ if(tasks.length > 0)
     console.log(taskHtml);
 }
 
+//this was to troubleshoot. This will activate both render and statusColor
+// tm.render();
+// tm.statusColor();
