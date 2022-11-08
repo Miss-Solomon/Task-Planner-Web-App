@@ -1,18 +1,23 @@
+//Note to console.log that this js page is linked.
+console.log("taskManager.js is linked.");
+
+//create Task in HTML
 const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
     const html = 
 `    <div class="card border-0">
-        <h5 class="card-title text-warning">${dueDate}:</h5>
-        <h4 class="card-subtitle">Task ${name}:</h4>
-        <h6 class="card-subtitle">${assignedTo}:</h6>
-        <p class="bg-danger">Task ${description}<br><br><br></p>
+        <div class="d-grid gap-2 d-md-flex justify-content-between">
+            <h6 class="card-title text-warning">Due: ${dueDate}</h6>
+            <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+        </div>
+        <h4 class="card-subtitle">${name}</h4>
+        <h6 class="card-subtitle">Person: ${assignedTo}</h6>
+        <p class="bg-danger">${description}<br><br><br></p>
     </div>`
 
     return html;
 }
 
-//Note to console.log that this js page is linked.
-console.log("taskManager.js is linked.");
-
+//Task Manager class
 class TaskManager {
 
     
@@ -25,7 +30,7 @@ class TaskManager {
 
     }
 
-    addTask (name, description, assignedTo, dueDate, status = 'TODO')
+    addTask (name, description, assignedTo, dueDate, status = 'To Do')
     {
         this.currentId++;
 
@@ -42,5 +47,85 @@ class TaskManager {
         
     }
 
-    
+    render () {
+        //local variables representing each of the separate columns of tasks
+        let tasksHtmlListToDo = [];
+        let tasksHtmlListDoing = [];
+        let tasksHtmlListReview = [];
+        let tasksHtmlListDone = [];
+        //for loop to change the date format, it goes through all in the task list array
+        for (let i = 0; i < this.tasks.length; i++) {
+            //variable to hold the current task object
+            let taskVariable = this.tasks[i];
+            //setting a variable "date" to equal a formatted date variable from the taskVariable object
+            let date = new Date(taskVariable.dueDate);
+            //changing the date variable to a string
+            let formattedDate = date.toString();
+            //changing the object's date into the formatted version of date
+            taskVariable.dueDate = formattedDate;
+            //creating the html string version of the task list object
+            let taskHtml = createTaskHtml(taskVariable.name, taskVariable.description, taskVariable.assignedTo, taskVariable.dueDate, taskVariable.status);
+            console.log(taskVariable.status);
+            //if to check if status of task matches "To Do", "Doing", "Review", or "Done", then it gets pushed into that respective taskHtmlList. Have to use taskVariable because it is an object with the status variable and not taskHtml because the latter is just a string with html, it doesn't have a single variable called status
+            if (taskVariable.status == "To Do") {
+                tasksHtmlListToDo.push(taskHtml);
+            }else if (taskVariable.status == "Doing") {
+                tasksHtmlListDoing.push(taskHtml);
+            } else if (taskVariable.status == "Review") {
+                tasksHtmlListReview.push(taskHtml);
+            } else if (taskVariable.status == "Done") {
+                tasksHtmlListDone.push(taskHtml);
+            } else {
+                console.log("Error in the status of the tasklist item")
+            }
+        }
+
+        //setting the arrays with each ID from the task column in index.html
+        let columnID = ["ToDoColumn", "DoingColumn", "ReviewColumn", "DoneColumn"];
+
+        //create array that have the 4 column objects as items
+        let columnVaruable = [tasksHtmlListToDo, tasksHtmlListDoing, tasksHtmlListReview, tasksHtmlListDone];
+
+        //a for loop that loops through all our column IDs and put int their respective task in that column.]
+        for (let i = 0; i < columnID.length; i++) {
+
+            //joining \n in between each task item
+            let tasksHtml = columnVaruable[i].join("\n\n");
+            console.log(tasksHtml);
+            
+            //create a variable pointing to the task's relative column that they will be put into
+            let pointer = document.getElementById(columnID[i]);
+
+            //creating element with the objects being added
+            let newCardHTML = document.createElement("div");
+
+            //setting our string tasksHtml into the newCardHTML. Have to do this because appending our string straight onto the columns result in errors
+            newCardHTML.innerHTML = tasksHtml;
+
+            //now we append our HTML into their respective task columns
+            pointer.appendChild(newCardHTML);
+        }
+        //this calls the color function to make sure the cards are of the right color via boostrap
+        this.statusColor();
+    }
+
+    statusColor () {
+
+        //setting the arrays with each ID from the task column in index.html
+        let columnID = ["ToDoColumn", "DoingColumn", "ReviewColumn", "DoneColumn"];
+        //array with the boostrap background color in order of status
+        let colorArray = ["bg-success", "bg-warning", "bg-danger", "bg-secondary"]
+
+        //a for loop to change the cards under
+        for (let i = 0; i < columnID.length; i++) {
+            
+            //a pointer for all the p elements in the status card column
+            let taskDesc = document.getElementById(columnID[i]).querySelectorAll('p');
+
+            //another for loop to cycle through each of the cards for their p element and changing the class so that it is the right color via boostrap;
+            for (let j = 0; j < taskDesc.length; j++){
+                taskDesc[j].className = colorArray[i];
+            }
+        }
+    }
 }
