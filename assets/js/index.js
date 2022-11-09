@@ -1,9 +1,13 @@
 //Note to console.log that this js page is linked.
 console.log("index.js is linked.");
+
 const tm = new TaskManager();
 
-//forms
+//new taskform pointer
 const newTaskForm = document.querySelector("#taskForm"); 
+
+//Pointer to mark done buttons in index.html task list
+const doneB = document.querySelector('#taskCardsSection');
 
 //Task list form variables
 const submitButton = document.querySelector("#submitButton");
@@ -93,6 +97,30 @@ let doNotSubmit = () => {
 
 //submit button listening for the mouse click event
 submitButton.addEventListener("click", validFormFieldInput);
+
+
+
+//function that moves tasks to the done column and change their color to match
+const testingclick = (data) => {
+    if (data.target.className.match("done-button")) {
+        console.log("The clicker has been clicked!");
+        let parentTask = data.target.parentNode.parentNode;
+        parentTask.querySelector('p').className = "bg-secondary";
+        console.log(parentTask);
+        document.querySelector("#DoneColumn").appendChild(parentTask);
+    }
+    console.log(data.target.className);
+}
+
+
+
+//done button listener
+doneB.addEventListener("click", testingclick);
+
+
+
+
+
 
 //sample task cards for troubleshooting
 tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
