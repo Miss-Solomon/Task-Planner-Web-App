@@ -1,9 +1,13 @@
 //Note to console.log that this js page is linked.
 console.log("index.js is linked.");
+
 const tm = new TaskManager();
 
-//forms
+//new taskform pointer
 const newTaskForm = document.querySelector("#taskForm"); 
+
+//Pointer to mark done buttons in index.html task list
+const taskList = document.querySelector('#taskCardsSection');
 
 //Task list form variables
 const submitButton = document.querySelector("#submitButton");
@@ -94,6 +98,33 @@ let doNotSubmit = () => {
 //submit button listening for the mouse click event
 submitButton.addEventListener("click", validFormFieldInput);
 
+
+
+//function that moves tasks to the done column and change their color to match
+const markDoneClick = (data) => {
+    if (data.target.className.match("done-button")) {
+        console.log("The clicker has been clicked!");
+        let parentTask = data.target.parentNode.parentNode;
+        parentTask.querySelector('p').className = "bg-secondary";
+        //printing console.log for troubleshooting
+        console.log(`This is the parent task of the task being marked done: ${parentTask}`);
+        document.querySelector("#DoneColumn").appendChild(parentTask);
+    }
+
+    //console.log to check the class. troubleshooting related
+    console.log(`This is the class of the task card being marked done: ${data.target.className}`);
+}
+
+
+
+//done button listener
+taskList.addEventListener("click", markDoneClick);
+
+
+
+
+
+
 //sample task cards for troubleshooting
 tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
 console.log(tm.tasks);
@@ -101,17 +132,18 @@ console.log(tm.tasks);
 tm.addTask('Milk', 'Get milk from Betsy', 'Sherri', '2020-09-20', "To Do");
 console.log(tm.tasks);
 
-tm.addTask('2', '222', '2222', '2020-09-20', "Review");
+tm.addTask('Egg', 'Get eggs from chicken', 'Lee', '2020-09-20', "Review");
 console.log(tm.tasks);
+
 
 const tasks = tm.tasks;
 if(tasks.length > 0)
 {
     const task = tasks[0];
     const taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, 
-        task.dueDate, task.status);
+        task.dueDate, task.status, task.id);
     
-    console.log(taskHtml);
+    // console.log(taskHtml);
 }
 
 //this was to troubleshoot. This will activate both render and statusColor
