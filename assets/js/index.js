@@ -49,7 +49,7 @@ let validFormFieldInput = (data) => {
         personAlert.hidden = true;
     }
 
-    if (newDate.value == "") {
+    if (newDate.value.length < 10) {
         dateAlert.hidden = false;
     } else {
         dateAlert.hidden = true;
@@ -101,39 +101,198 @@ submitButton.addEventListener("click", validFormFieldInput);
 
 
 //function that moves tasks to the done column and change their color to match
-const markDoneClick = (data) => {
-    if (data.target.className.match("done-button")) {
-        console.log("The clicker has been clicked!");
-        let parentTask = data.target.parentNode.parentNode;
-        parentTask.querySelector('p').className = "bg-secondary";
-        //printing console.log for troubleshooting
-        console.log(`This is the parent task of the task being marked done: ${parentTask}`);
-        document.querySelector("#DoneColumn").appendChild(parentTask);
-    }
+//deactivated since there is a better function down below.
 
-    //console.log to check the class. troubleshooting related
-    console.log(`This is the class of the task card being marked done: ${data.target.className}`);
-}
+// const markDoneClick = (data) => {
+//     //checking if the button is clicked
+//     if (data.target.className.match("done-button")) {
+//         //console.log indicating that the button is successfully clicked
+//         console.log("The clicker has been clicked!");
+
+//         data.target.hidden = true;
+//         console.log(data.target.innerHTML);
+        
+//         //pointing to the parent div of the task card
+//         let parentTask = data.target.parentNode.parentNode;
+
+//         //changing the color of the card into the done column color
+//         parentTask.querySelector('p').className = "bg-secondary";
+
+//         //console.log the task card's old status before it changes
+//         console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+
+//         //changing the status of the task card to done
+//         data.target.parentNode.parentNode.setAttribute("task-status", "Done");
+
+//         //printing console.log the html of the entire task card for troubleshooting
+//         console.log(`This is the parent task of the task being marked done: ${parentTask.outerHTML}`);
+
+//         document.querySelector("#DoneColumn").appendChild(parentTask);
+//     }
+
+//     //console.log to check to make sure the status attribute of the moved task card is changed
+//     setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
+// }
 
 
 
 //done button listener
-taskList.addEventListener("click", markDoneClick);
+// taskList.addEventListener("click", markDoneClick);
 
 
 
+
+
+
+
+//function that moves tasks to the done column and change their color to match
+const changeStatus = (data) => {
+
+    //checking if the button is clicked
+    if (data.target.value.match("Done")) {
+        //console.log indicating that the button is successfully clicked
+        console.log("The clicker has been clicked!");
+        
+        //pointing to the parent div of the task card
+        let parentTask = data.target.parentNode.parentNode;
+
+        //changing the color of the card into the done column color, gray
+        parentTask.querySelector('p').className = "bg-secondary";
+
+        //console.log the task card's old status before it changes
+        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+
+        //changing the status of the task card to done
+        data.target.parentNode.parentNode.setAttribute("task-status", "Done");
+
+        //printing console.log the html of the entire task card for troubleshooting
+        console.log(`This is the parent task of the task being marked done: ${data.target.parentNode.querySelector('.done-button')}`);
+
+        //hide Move Task button
+        data.target.parentNode.querySelector('.done-button').setAttribute("hidden", true);
+        //hide drop down list
+        data.target.setAttribute("hidden", true);
+
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Done");
+
+        //This appends the task card into the Done column
+        document.querySelector("#DoneColumn").appendChild(parentTask);
+
+    } else if (data.target.value.match("Review")) {
+
+        //console.log indicating that the button is successfully clicked
+        console.log("The clicker has been clicked!");
+        
+        //pointing to the parent div of the task card
+        let parentTask = data.target.parentNode.parentNode;
+
+        //changing the color of the card into the review column color, red
+        parentTask.querySelector('p').className = "bg-danger";
+
+        //console.log the task card's old status before it changes
+        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+
+        //changing the status of the task card to Review
+        data.target.parentNode.parentNode.setAttribute("task-status", "Review");
+
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Review");
+
+        //This appends the task card into the review column
+        document.querySelector("#ReviewColumn").appendChild(parentTask);
+
+    } else if ((data.target.value.match("Doing"))) {
+
+        //console.log indicating that the button is successfully clicked
+        console.log("The clicker has been clicked!");
+        
+        //pointing to the parent div of the task card
+        let parentTask = data.target.parentNode.parentNode;
+
+        //changing the color of the card into the Doing column color, yellow
+        parentTask.querySelector('p').className = "bg-warning";
+
+        //console.log the task card's old status before it changes
+        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+
+        //changing the status of the task card to done
+        data.target.parentNode.parentNode.setAttribute("task-status", "Doing");
+
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Doing");
+
+        //This appends the task card into the Doing column
+        document.querySelector("#DoingColumn").appendChild(parentTask);
+
+    } else if (data.target.value.match("To Do")) {
+
+        //console.log indicating that the button is successfully clicked
+        console.log("The clicker has been clicked!");
+        
+        //pointing to the parent div of the task card
+        let parentTask = data.target.parentNode.parentNode;
+
+        //changing the color of the card into the To Do column color, green
+        parentTask.querySelector('p').className = "bg-success";
+
+        //console.log the task card's old status before it changes
+        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+
+        //changing the status of the task card to done
+        data.target.parentNode.parentNode.setAttribute("task-status", "To Do");
+
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "To Do");
+
+        //adding the task card back into the To Do column of the task list
+        document.querySelector("#ToDoColumn").appendChild(parentTask);
+
+    } else {
+
+        //this prints to console when the change status button was changed or some error occured
+        console.log("A status was not changed.")
+    }
+
+    //console.log to check to make sure the status attribute of the moved task card is changed
+    setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
+
+}
+
+//This checks the id of the task's status being changed and changes the status of the task list array item as well.
+const changeStatusOnList = (id, status) => {
+    let task = tm.getTaskById(id);
+    task.status = status;
+}
+
+
+
+//This listens to a change in the drop down menu of the individual tasks in the task list
+taskList.addEventListener("change", changeStatus);
 
 
 
 //sample task cards for troubleshooting
-tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
-console.log(tm.tasks);
+// tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
+// console.log(tm.tasks);
 
-tm.addTask('Milk', 'Get milk from Betsy', 'Sherri', '2020-09-20', "To Do");
-console.log(tm.tasks);
+// tm.addTask('Milk', 'Get milk from Betsy', 'Sherri', '2020-09-20', "To Do");
+// console.log(tm.tasks);
 
-tm.addTask('Egg', 'Get eggs from chicken', 'Lee', '2020-09-20', "Review");
-console.log(tm.tasks);
+// tm.addTask('Egg', 'Get eggs from chicken', 'Lee', '2020-09-20', "Review");
+// console.log(tm.tasks);
 
 
 const tasks = tm.tasks;
@@ -146,6 +305,6 @@ if(tasks.length > 0)
     // console.log(taskHtml);
 }
 
-//this was to troubleshoot. This will activate both render and statusColor
-// tm.render();
+// this was to troubleshoot. This will activate both render and statusColor
+// tm.render(0);
 // tm.statusColor();
