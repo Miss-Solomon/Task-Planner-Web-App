@@ -52,7 +52,7 @@
                                 </div>
                             
                                 <!--Form where you pick the date-->
-                                <label for="task_date">Due Date:</label><br>
+                                <label for="task_date">Due:</label><br>
                                 <input type="date" id="newDateInput" name="task_date" class="newTaskFormInput">
                                 <div class="alert alert-danger dateAlert" role="alert" hidden>
                                     Required: Please enter a due date.
@@ -95,40 +95,54 @@
         <!--Section the Task Cards will go-->
         <section class="col 12 mx-0 mt-5" id="taskCardsSection">
             <h2>All Tasks:</h2>
+
             <!--Div element to set Task Cards section margin-->
             <div class="m-2">
+                
                 <!--task cards using bootstrap-->
                 <div class="row px-1">
 
                     <!--Start of To Do's Column, this is the To Do Heading-->
                     <div class="col-3 px-0" id="ToDoColumn">
-                        <h6 class="bg-success text-center ">To Do</h6>
+                        <h6 class="bg-success text-center">To Do</h6>
+
                         <!--To Do Card Template-->
-                        <div class="card border-0">
+                        <div class="card border-0" data-task-id="" task-status="To Do">
 
                             <!--Due date and button, at separate ends-->
                             <div class="d-grid gap-2 d-md-flex justify-content-between">
+
                                 <!--Due date-->
-                                <h6 class="card-title text-warning">Due Date:</h6>
+                                <h6 class="card-title text-warning">Due:</h6>
+
                                 <!--Mark done button-->
-                                <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+                                <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Move Task</button>
+                                
+                                <!--The dropdown menu that pops up when you click Move Task-->
+                                <select class="dropdown-menu">
+                                    <option value="To Do">To Do</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Review">Review</option>
+                                    <option value="Done">Done</option>
+                                </select>
+                                
                             </div>
 
                             <!--Task name, assignee, description-->
-                            <h4 class="card-title">Task Name:</h4>
+                            <h4 class="card-subtitle">Task Name:</h4>
                             <h6 class="card-subtitle">Assigned to:</h6>
                             <p class="bg-success">Task Description<br><br><br></p>
                         </div>
 
                         <!--2 Sample To Do Cards, currently commented out-->
-                        <!-- <div class="card border-0">
-                            <h6 class="card-title text-warning">Due Date: 12/24/2022</h6>
+                        <!-- <div class="card border-0" data-task-id="" task-status="To Do">
+                            <h6 class="card-title text-warning">Due: 12/24/2022</h6>
                             <h4 class="card-subtitle">Task Name: Rescue Peach</h4>
                             <h6 class="card-subtitle">Assigned to: Mario</h6>
                             <p class="bg-success">Rescue the Princess from Bowser's castle.<br><br></p>
                         </div>
-                        <div class="card border-0">
-                            <h6 class="card-title text-warning">Due Date: 12/25/2022</h6>
+                        <div class="card border-0" data-task-id="" task-status="To Do">
+                            <h6 class="card-title text-warning">Due: 12/25/2022</h6>
                             <h4 class="card-subtitle">Task Name: Assist Mario</h4>
                             <h6 class="card-subtitle">Assigned to: Yoshi</h6>
                             <p class="bg-success">No Super Mario game is complete without your favorite green dinosaur! Time for me to assist the local plumber in rescuing the princess for the 100th time!<br><br><br></p>
@@ -139,14 +153,25 @@
                     <div class="col-3 px-0" id="DoingColumn">
                         <h6 class="bg-warning text-center">Doing</h6>
                         <!--Doing Card Template-->
-                        <div class="card border-0">
+                        <div class="card border-0" data-task-id="" task-status="Doing">
 
                             <!--Due date and button, at separate ends-->
                             <div class="d-grid gap-2 d-md-flex justify-content-between">
+
                                 <!--Due date-->
-                                <h6 class="card-title text-warning">Due Date:</h6>
+                                <h6 class="card-title text-warning">Due:</h6>
+
                                 <!--Mark done button-->
-                                <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+                                <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Move Task</button>
+
+                                <!--The dropdown menu that pops up when you click Move Task-->
+                                <select class="dropdown-menu">
+                                    <option value="To Do">To Do</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Review">Review</option>
+                                    <option value="Done">Done</option>
+                                </select>
+
                             </div>
 
                             <!--Task name, assignee, description-->
@@ -156,8 +181,8 @@
                         </div>  
 
                         <!--Sample Doing Cards, currently commented out-->
-                        <!-- <div class="card border-0">
-                            <h6 class="card-title text-warning">Due Date: 12/25/2022</h6>
+                        <!-- <div class="card border-0" data-task-id="" task-status="Doing">
+                            <h6 class="card-title text-warning">Due: 12/25/2022</h6>
                             <h4 class="card-subtitle">Task Name: Escape</h4>
                             <h6 class="card-subtitle">Assigned to: Princess Peach</h6>
                             <p class="bg-warning">I'm tired of Nintendo writing me as the damsel in distress. Watch me break out of here and star in my own video game once again!<br><br><br></p>
@@ -168,14 +193,24 @@
                     <div class="col-3 px-0" id="ReviewColumn">
                         <h6 class="bg-danger text-center">Review</h6>
                         <!--Review Card Template-->
-                        <div class="card border-0">
+                        <div class="card border-0" data-task-id="" task-status="Review">
 
                             <!--Due date and button, at separate ends-->
                             <div class="d-grid gap-2 d-md-flex justify-content-between">
                                 <!--Due date-->
-                                <h6 class="card-title text-warning">Due Date:</h6>
+                                <h6 class="card-title text-warning">Due:</h6>
+
                                 <!--Mark done button-->
-                                <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+                                <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Move Task</button>
+
+                                <!--The dropdown menu that pops up when you click Move Task-->
+                                <select class="dropdown-menu">
+                                    <option value="To Do">To Do</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Review">Review</option>
+                                    <option value="Done">Done</option>
+                                </select>
+
                             </div>
 
                             <!--Task name, assignee, description-->
@@ -185,8 +220,8 @@
                         </div>
 
                         <!--Sample Review Cards, currently commented out-->
-                        <!-- <div class="card border-0">
-                            <h6 class="card-title text-warning">Due Date: 9/19/2022</h6>
+                        <!-- <div class="card border-0" data-task-id="" task-status="Review">
+                            <h6 class="card-title text-warning">Due: 9/19/2022</h6>
                             <h4 class="card-subtitle">Task Name: Castle Security</h4>
                             <h6 class="card-subtitle">Assigned to: Toad</h6>
                             <p class="bg-danger">Bowser keeps getting in so we must increase the castle's security. More puzzles!<br><br><br></p>
@@ -197,14 +232,24 @@
                     <div class="col-3 px-0" id="DoneColumn">
                         <h6 class="bg-secondary text-center">Done</h6>
                         <!--Done Card Template-->
-                        <div class="card border-0">
+                        <div class="card border-0" data-task-id="" task-status="Done">
 
                             <!--Due date and button, at separate ends-->
                             <div class="d-grid gap-2 d-md-flex justify-content-between">
                                 <!--Due date-->
-                                <h6 class="card-title text-warning">Due Date:</h6>
+                                <h6 class="card-title text-warning">Due:</h6>
+
                                 <!--Mark done button-->
-                                <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+                                <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false" hidden>Move Task</button>
+
+                                <!--The dropdown menu that pops up when you click Move Task-->
+                                <select class="dropdown-menu">
+                                    <option value="To Do">To Do</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Review">Review</option>
+                                    <option value="Done">Done</option>
+                                </select>
+
                             </div>
 
                             <!--Task name, assignee, description-->
@@ -214,8 +259,8 @@
                         </div>
 
                         <!--Sample Done Cards, currently commented out-->
-                        <!-- <div class="card border-0">
-                            <h6 class="card-title text-warning">Due Date: 9/15/2022</h6>
+                        <!-- <div class="card border-0" data-task-id="" task-status="Done">
+                            <h6 class="card-title text-warning">Due: 9/15/2022</h6>
                             <h4 class="card-subtitle">Task Name: Kidnap the Princess</h4>
                             <h6 class="card-subtitle">Assigned to: Bowser</h6>
                             <p class="bg-secondary">I'm bored of kidnapping princesses but Nintendo cannot release a new Super Mario main game without this tried and true plot.<br><br><br></p>

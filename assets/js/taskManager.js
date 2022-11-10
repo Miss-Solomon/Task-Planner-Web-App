@@ -4,10 +4,19 @@ console.log("taskManager.js is linked.");
 //create Task in HTML
 const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
     const html = 
-`    <div class="card border-0" data-task-id="${id}">
+`    <div class="card border-0" data-task-id="${id}" task-status="${status}">
         <div class="d-grid gap-2 d-md-flex justify-content-between">
             <h6 class="card-title text-warning">Due: ${dueDate}</h6>
-            <button class="btn btn-primary btn-sm done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Mark Done</button>
+
+            <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Move Task</button>
+
+            <select class="dropdown-menu">
+            <option value="To Do">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Review">Review</option>
+            <option value="Done">Done</option>
+            </select>
+
         </div>
         <h4 class="card-subtitle">${name}</h4>
         <h6 class="card-subtitle">Person: ${assignedTo}</h6>
@@ -49,6 +58,20 @@ class TaskManager {
         
     }
 
+    //Task 7, Step 4. Method to use the id to find the correct task. Will compare an id to ids of all tasks and find matching task, and return it. NOTE: At the moment, it only checks the items on the task list, which is pre-html rendered. That means if you change status with the button, it does not reflect that. Only the original status.
+    getTaskById (taskID) {
+        let foundTask = "";
+
+        for (let i = 0; i < this.tasks.length; i++) {
+            let task = this.tasks[i];
+
+            if (task.id == taskID) {
+                let foundTask = task;
+                return foundTask;
+            }
+        }
+    }
+
     render () {
         //local variables representing each of the separate columns of tasks
         let tasksHtmlListToDo = [];
@@ -75,8 +98,8 @@ class TaskManager {
             let taskHtml = createTaskHtml(taskVariable.name, taskVariable.description, taskVariable.assignedTo, taskVariable.dueDate, taskVariable.status, taskVariable.id);
 
             //console.log to print out to console to troubleshoot
-            console.log(`This is the status: ${taskVariable.status}`);
-            console.log(`This is taskHtml: ${taskHtml}`)
+            // console.log(`This is the status: ${taskVariable.status}`);
+            // console.log(`This is taskHtml: ${taskHtml}`)
 
             //if to check if status of task matches "To Do", "Doing", "Review", or "Done", then it gets pushed into that respective taskHtmlList. Have to use taskVariable because it is an object with the status variable and not taskHtml because the latter is just a string with html, it doesn't have a single variable called status
             if (taskVariable.status == "To Do") {
@@ -87,6 +110,7 @@ class TaskManager {
                 tasksHtmlListReview.push(taskHtml);
             } else if (taskVariable.status == "Done") {
                 tasksHtmlListDone.push(taskHtml);
+                // hideButtonInDoneColumn();
             } else {
                 console.log("Error in the status of the tasklist item")
             }
@@ -121,6 +145,8 @@ class TaskManager {
         }
         //this calls the color function to make sure the cards are of the right color via boostrap
         this.statusColor();
+
+
     }
 
     statusColor () {
@@ -141,5 +167,19 @@ class TaskManager {
                 taskDesc[j].className = colorArray[i];
             }
         }
+    }
+
+    hideButtonInDoneColumn () {
+        //This only happens for tasks going into the done column, this is to hide the task change button
+        let buttons = document.querySelector('.DoneColumn').querySelectorAll('.done-button');
+        
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute("hidden", true);
+        }
+        
+        // setAttribute("hidden", true);
+        // //hide drop down list
+        // doneHTML.querySelectorAll('.dropdown-menu').setAttribute("hidden", true);
+        // console.log(doneHTML);
     }
 }
