@@ -72,15 +72,16 @@ class TaskManager {
         }
     }
 
-    render () {
+    //This will render a task into the task list. This will take an parameter x for where in the tasks array (our task list) to start rendering (remember, the arrays starts counting from 0 and up. giving it a 0 will make it render from the beginning). If it starts rendering from a spot where there is already a task rendered, then there will be duplicates. If no arguments are given, then it will render from the last task that was submitted
+    render (x = this.tasks.length-1) {
         //local variables representing each of the separate columns of tasks
         let tasksHtmlListToDo = [];
         let tasksHtmlListDoing = [];
         let tasksHtmlListReview = [];
         let tasksHtmlListDone = [];
 
-        //for loop to change the date format, it goes through all in the task list array
-        for (let i = 0; i < this.tasks.length; i++) {
+        //for loop to change the date format. It only does the latest added task list item.
+        for (let i = x; i < this.tasks.length; i++) {
 
             //variable to hold the current task object
             let taskVariable = this.tasks[i];
@@ -110,7 +111,6 @@ class TaskManager {
                 tasksHtmlListReview.push(taskHtml);
             } else if (taskVariable.status == "Done") {
                 tasksHtmlListDone.push(taskHtml);
-                // hideButtonInDoneColumn();
             } else {
                 console.log("Error in the status of the tasklist item")
             }
@@ -146,6 +146,7 @@ class TaskManager {
         //this calls the color function to make sure the cards are of the right color via boostrap
         this.statusColor();
 
+        this.hideButtonInDoneColumn();
 
     }
 
@@ -169,17 +170,13 @@ class TaskManager {
         }
     }
 
+    //this goes and hide the done button when the item renders into the done column
     hideButtonInDoneColumn () {
         //This only happens for tasks going into the done column, this is to hide the task change button
-        let buttons = document.querySelector('.DoneColumn').querySelectorAll('.done-button');
-        
+        let buttons = document.querySelector('#DoneColumn').querySelectorAll('.done-button');
+        console.log(buttons);
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].setAttribute("hidden", true);
         }
-        
-        // setAttribute("hidden", true);
-        // //hide drop down list
-        // doneHTML.querySelectorAll('.dropdown-menu').setAttribute("hidden", true);
-        // console.log(doneHTML);
     }
 }

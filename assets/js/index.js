@@ -49,7 +49,7 @@ let validFormFieldInput = (data) => {
         personAlert.hidden = true;
     }
 
-    if (newDate.value == "") {
+    if (newDate.value.length < 10) {
         dateAlert.hidden = false;
     } else {
         dateAlert.hidden = true;
@@ -173,6 +173,12 @@ const changeStatus = (data) => {
         //hide drop down list
         data.target.setAttribute("hidden", true);
 
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Done");
+
         //This appends the task card into the Done column
         document.querySelector("#DoneColumn").appendChild(parentTask);
 
@@ -192,6 +198,12 @@ const changeStatus = (data) => {
 
         //changing the status of the task card to Review
         data.target.parentNode.parentNode.setAttribute("task-status", "Review");
+
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Review");
 
         //This appends the task card into the review column
         document.querySelector("#ReviewColumn").appendChild(parentTask);
@@ -213,6 +225,12 @@ const changeStatus = (data) => {
         //changing the status of the task card to done
         data.target.parentNode.parentNode.setAttribute("task-status", "Doing");
 
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "Doing");
+
         //This appends the task card into the Doing column
         document.querySelector("#DoingColumn").appendChild(parentTask);
 
@@ -233,6 +251,12 @@ const changeStatus = (data) => {
         //changing the status of the task card to done
         data.target.parentNode.parentNode.setAttribute("task-status", "To Do");
 
+        //This gets the id of the task having their status changed
+        let id = Number(parentTask.getAttribute("data-task-id"));
+
+        //This checks the id of the task's status being changed and changes the status of the task list array item as well.
+        changeStatusOnList(id, "To Do");
+
         //adding the task card back into the To Do column of the task list
         document.querySelector("#ToDoColumn").appendChild(parentTask);
 
@@ -247,13 +271,16 @@ const changeStatus = (data) => {
 
 }
 
+//This checks the id of the task's status being changed and changes the status of the task list array item as well.
+const changeStatusOnList = (id, status) => {
+    let task = tm.getTaskById(id);
+    task.status = status;
+}
+
+
 
 //This listens to a change in the drop down menu of the individual tasks in the task list
 taskList.addEventListener("change", changeStatus);
-
-
-
-
 
 
 
@@ -278,6 +305,6 @@ if(tasks.length > 0)
     // console.log(taskHtml);
 }
 
-//this was to troubleshoot. This will activate both render and statusColor
-// tm.render();
+// this was to troubleshoot. This will activate both render and statusColor
+// tm.render(0);
 // tm.statusColor();
