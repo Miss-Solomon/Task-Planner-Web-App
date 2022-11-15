@@ -2,6 +2,8 @@
 console.log("index.js is linked.");
 
 const tm = new TaskManager();
+tm.load();
+tm.render();
 
 //new taskform pointer
 const newTaskForm = document.querySelector("#taskForm"); 
@@ -67,6 +69,7 @@ let validFormFieldInput = (data) => {
         //adding current values in the new task form into the task list
         tm.addTask(newTaskName.value, newDescription.value, newPerson.value, newDate.value, newTaskStatus.value);
         console.log(tm.tasks);
+        tm.save();
 
         //this calls the render() after the new task is added under the task list
         tm.render();
@@ -88,10 +91,7 @@ let validFormFieldInput = (data) => {
     // return false;
 }
 
-//for future references, will stop submit
-let doNotSubmit = () => {
-    return false; 
-}
+
 
 
 
@@ -269,6 +269,7 @@ const changeStatus = (data) => {
     //console.log to check to make sure the status attribute of the moved task card is changed
     setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
 
+    tm.save();
 }
 
 //This checks the id of the task's status being changed and changes the status of the task list array item as well.

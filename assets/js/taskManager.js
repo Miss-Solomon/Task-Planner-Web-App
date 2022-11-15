@@ -174,9 +174,38 @@ class TaskManager {
     hideButtonInDoneColumn () {
         //This only happens for tasks going into the done column, this is to hide the task change button
         let buttons = document.querySelector('#DoneColumn').querySelectorAll('.done-button');
-        console.log(buttons);
+        //console.log(buttons);
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].setAttribute("hidden", true);
+        }
+    }
+    //task 8 save method
+    save () {
+        const tasksJson = JSON.stringify(this.tasks);
+        localStorage.setItem('tasks', tasksJson);
+        
+        const currentId = this.currentId.toString();
+        localStorage.setItem('currentId', currentId);
+
+        //console.log(currentId);
+        //console.log(tasksJson);
+
+    }
+     
+    //load method
+    load () {
+        
+
+        if(localStorage.getItem('tasks'))
+        {
+            const tasksJson = localStorage.getItem('tasks');
+            this.tasks = JSON.parse(tasksJson);
+        }
+
+        if(localStorage.getItem('currentId'))
+        {
+            const currentId = localStorage.getItem('currentId');
+            this.currentId = parseInt(currentId);
         }
     }
 }
