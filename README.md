@@ -17,6 +17,9 @@ Collaborators:
 
 + [Kidanemariam Rozario](https://github.com/Rozariokid)
 
+Previous Collaborators:
+
++ [Diana Fountaine](https://github.com/dianafountaine)
 
 
 Important Links:
