@@ -49,7 +49,7 @@ let validFormFieldInput = (data) => {
         personAlert.hidden = true;
     }
 
-    if (newDate.value.length < 10) {
+    if (newDate.value == "") {
         dateAlert.hidden = false;
     } else {
         dateAlert.hidden = true;
@@ -61,9 +61,9 @@ let validFormFieldInput = (data) => {
         descriptionAlert.hidden = true;
     }
 
-    //Task 5: If all alerts are hidden = true, then push new task into task list
-    if (descriptionAlert.hidden) {
-        console.log("No alerts are shown. Will push task");
+    //Task 5: If all alerts are hidden = true, then push new task into task list. This means that if no alerts are shown, then the information on the task form will be added onto the task array
+    if (descriptionAlert.hidden && nameAlert.hidden && personAlert.hidden && dateAlert.hidden) {
+        console.log("No alerts are shown. Will push task into task array");
         //adding current values in the new task form into the task list
         tm.addTask(newTaskName.value, newDescription.value, newPerson.value, newDate.value, newTaskStatus.value);
         console.log(tm.tasks);
@@ -79,10 +79,14 @@ let validFormFieldInput = (data) => {
         //setting the status back to "To Do"
         newTaskStatus.value = "To Do";
 
+        //setting the date back to tomorrow's date
+        defaultDate();
+
     } else {
 
         //this shows up on the console log when there are errors. Just for troubleshooting purposes
-        console.log("Alerts are shown. No pushing the task to the Task List.")
+        console.log("Alerts are shown. No pushing the task to the Task List. Please check for erros")
+        console.log(newDate.value);
     };
     
     // return false;
@@ -151,7 +155,7 @@ const changeStatus = (data) => {
     //checking if the button is clicked
     if (data.target.value.match("Done")) {
         //console.log indicating that the button is successfully clicked
-        console.log("The clicker has been clicked!");
+        // console.log("The clicker has been clicked!");
         
         //pointing to the parent div of the task card
         let parentTask = data.target.parentNode.parentNode;
@@ -185,7 +189,7 @@ const changeStatus = (data) => {
     } else if (data.target.value.match("Review")) {
 
         //console.log indicating that the button is successfully clicked
-        console.log("The clicker has been clicked!");
+        // console.log("The clicker has been clicked!");
         
         //pointing to the parent div of the task card
         let parentTask = data.target.parentNode.parentNode;
@@ -211,7 +215,7 @@ const changeStatus = (data) => {
     } else if ((data.target.value.match("Doing"))) {
 
         //console.log indicating that the button is successfully clicked
-        console.log("The clicker has been clicked!");
+        // console.log("The clicker has been clicked!");
         
         //pointing to the parent div of the task card
         let parentTask = data.target.parentNode.parentNode;
@@ -237,7 +241,7 @@ const changeStatus = (data) => {
     } else if (data.target.value.match("To Do")) {
 
         //console.log indicating that the button is successfully clicked
-        console.log("The clicker has been clicked!");
+        // console.log("The clicker has been clicked!");
         
         //pointing to the parent div of the task card
         let parentTask = data.target.parentNode.parentNode;
@@ -246,7 +250,7 @@ const changeStatus = (data) => {
         parentTask.querySelector('p').className = "bg-success";
 
         //console.log the task card's old status before it changes
-        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+        // console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
 
         //changing the status of the task card to done
         data.target.parentNode.parentNode.setAttribute("task-status", "To Do");
@@ -282,7 +286,24 @@ const changeStatusOnList = (id, status) => {
 //This listens to a change in the drop down menu of the individual tasks in the task list
 taskList.addEventListener("change", changeStatus);
 
+//this is a function that sets the form date to tomorrow's date. This will be the default value of our Task form due value.
+let defaultDate = () => {
+    let systemDate =  new Date();
+    let day = systemDate.getDate() + 1;
+    let month = systemDate.getMonth() + 1;
+    let year = systemDate.getFullYear();
+    let currentDate = `${year}-${month}-${day}`;
+    console.log(`This is the value of date: ${newDate.value}`);
+    console.log(`This is the value of system: ${currentDate}`);
+    newDate.value = currentDate;
+}
 
+//This sets the due date to tomorrow's date on loading
+document.addEventListener("load", defaultDate());
+
+
+
+// console.log(`This is the value of date: ${newDate.value}`);
 
 //sample task cards for troubleshooting
 // tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");
