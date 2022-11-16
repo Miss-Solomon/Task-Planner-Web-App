@@ -2,8 +2,12 @@
 console.log("index.js is linked.");
 
 const tm = new TaskManager();
-tm.load();
-tm.render();
+//this checks if the local storage have anything before loading
+if (localStorage.getItem('tasks') !==null && localStorage.getItem('currentId') !==null) {
+    tm.load();
+    //remember that render needs an argument if you want to load from a certain place in the array. So to render the entire list, you need the argument of 0.
+    tm.render(0);
+}
 
 //new taskform pointer
 const newTaskForm = document.querySelector("#taskForm"); 
@@ -33,10 +37,10 @@ let validFormFieldInput = (data) => {
     //Task 4 asks that the Task Name be printed out to console as a test
     const newTaskNameInput = document.querySelector('#newTaskNameInput');
     const name = newTaskNameInput.value;
-    console.log("name:  "+name);
+    // console.log("name:  "+name);
 
     //Not required in Task 4, but just to test if other fields give correct information
-    console.log(`Date: ${document.querySelector('#newDateInput').value} Person: ${document.querySelector('#newPersonInput').value} Desc: ${document.querySelector('#newDescriptionInput').value} Status: ${document.querySelector('#newTaskStatusInput').value}`);
+    // console.log(`Date: ${document.querySelector('#newDateInput').value} Person: ${document.querySelector('#newPersonInput').value} Desc: ${document.querySelector('#newDescriptionInput').value} Status: ${document.querySelector('#newTaskStatusInput').value}`);
 
     //Task 4: Code to show errors to users if the forms are not filled out. Note that the "Task Status" is not included as it will always have a status
     if (newTaskName.value == "") {
@@ -68,7 +72,6 @@ let validFormFieldInput = (data) => {
         console.log("No alerts are shown. Will push task into task array");
         //adding current values in the new task form into the task list
         tm.addTask(newTaskName.value, newDescription.value, newPerson.value, newDate.value, newTaskStatus.value);
-        console.log(tm.tasks);
         tm.save();
 
         //this calls the render() after the new task is added under the task list
@@ -88,8 +91,7 @@ let validFormFieldInput = (data) => {
     } else {
 
         //this shows up on the console log when there are errors. Just for troubleshooting purposes
-        console.log("Alerts are shown. No pushing the task to the Task List. Please check for erros")
-        console.log(newDate.value);
+        console.log("Alerts are shown. No pushing the task to the Task List. Please check for errors")
     };
     
     // return false;
@@ -164,13 +166,13 @@ const changeStatus = (data) => {
         parentTask.querySelector('p').className = "bg-secondary";
 
         //console.log the task card's old status before it changes
-        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+        // console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
 
         //changing the status of the task card to done
         data.target.parentNode.parentNode.setAttribute("task-status", "Done");
 
         //printing console.log the html of the entire task card for troubleshooting
-        console.log(`This is the parent task of the task being marked done: ${data.target.parentNode.querySelector('.done-button')}`);
+        // console.log(`This is the parent task of the task being marked done: ${data.target.parentNode.querySelector('.done-button')}`);
 
         //hide Move Task button
         data.target.parentNode.querySelector('.done-button').setAttribute("hidden", true);
@@ -198,7 +200,7 @@ const changeStatus = (data) => {
         parentTask.querySelector('p').className = "bg-danger";
 
         //console.log the task card's old status before it changes
-        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+        // console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
 
         //changing the status of the task card to Review
         data.target.parentNode.parentNode.setAttribute("task-status", "Review");
@@ -224,7 +226,7 @@ const changeStatus = (data) => {
         parentTask.querySelector('p').className = "bg-warning";
 
         //console.log the task card's old status before it changes
-        console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
+        // console.log(`This is the old task status: ${parentTask.getAttribute("task-status")}`);
 
         //changing the status of the task card to done
         data.target.parentNode.parentNode.setAttribute("task-status", "Doing");
@@ -267,16 +269,16 @@ const changeStatus = (data) => {
     } else {
 
         //this prints to console when the change status button was changed or some error occured
-        console.log("A status was not changed.")
+        // console.log("A status was not changed.")
     }
 
     //console.log to check to make sure the status attribute of the moved task card is changed
-    setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
+    // setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
 
     tm.save();
 }
 
-//This checks the id of the task's status being changed and changes the status of the task list array item as well.
+//This function checks the id of the task's status being changed and changes the status of the task list array item as well.
 const changeStatusOnList = (id, status) => {
     let task = tm.getTaskById(id);
     task.status = status;
@@ -289,22 +291,20 @@ taskList.addEventListener("change", changeStatus);
 
 //this is a function that sets the form date to tomorrow's date. This will be the default value of our Task form due value.
 let defaultDate = () => {
+    //this sets it up that tomorrowDate will equal to tomorrow
     let systemDate =  new Date();
     let day = systemDate.getDate() + 1;
     let month = systemDate.getMonth() + 1;
     let year = systemDate.getFullYear();
-    let currentDate = `${year}-${month}-${day}`;
-    console.log(`This is the value of date: ${newDate.value}`);
-    console.log(`This is the value of system: ${currentDate}`);
-    newDate.value = currentDate;
+    let tomorrowDate = `${year}-${month}-${day}`;
+    // console.log(`This is the value of date: ${newDate.value}`);
+    // console.log(`This is the value of system: ${tomorrowDate}`);
+    //this makes it so that the date field of the input field equals to tomorrow's date
+    newDate.value = tomorrowDate;
 }
 
 //This sets the due date to tomorrow's date on loading
 document.addEventListener("load", defaultDate());
-
-
-
-// console.log(`This is the value of date: ${newDate.value}`);
 
 //sample task cards for troubleshooting
 // tm.addTask('Take out the trash', 'Take out the trash to the front of the house', 'Nick', '2020-09-20', "To Do");

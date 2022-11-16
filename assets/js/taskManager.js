@@ -180,6 +180,7 @@ class TaskManager {
             buttons[i].setAttribute("hidden", true);
         }
     }
+    
     //task 8 save method
     save () {
         const tasksJson = JSON.stringify(this.tasks);
