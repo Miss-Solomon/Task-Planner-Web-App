@@ -1,6 +1,7 @@
 //Note to console.log that this js page is linked.
 console.log("taskManager.js is linked.");
 
+
 //create Task in HTML
 const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
     const html = 
@@ -179,6 +180,7 @@ class TaskManager {
             buttons[i].setAttribute("hidden", true);
         }
     }
+    
     //task 8 save method
     save () {
         const tasksJson = JSON.stringify(this.tasks);
