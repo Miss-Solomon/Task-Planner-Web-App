@@ -12,8 +12,9 @@ if (localStorage.getItem('tasks') !==null && localStorage.getItem('currentId') !
 //new taskform pointer
 const newTaskForm = document.querySelector("#taskForm"); 
 
-//Pointer to mark done buttons in index.html task list
+//Pointer to status buttons in index.html task list
 const taskList = document.querySelector('#taskCardsSection');
+const statusButton = taskList.querySelectorAll('select')
 
 //Task list form variables
 const submitButton = document.querySelector("#submitButton");
@@ -154,6 +155,11 @@ submitButton.addEventListener("click", validFormFieldInput);
 //function that moves tasks to the done column and change their color to match
 const changeStatus = (data) => {
 
+    //there are errors in the console when the moues isn't clicking something with a value. Not sure if it affects anything to leave it, but just in case, I will add this that exits the function when the value isn't anything we are looking for
+    if (data.target.value == null) {
+        return;
+    }
+
     //checking if the button is clicked
     if (data.target.value.match("Done")) {
         //console.log indicating that the button is successfully clicked
@@ -174,8 +180,12 @@ const changeStatus = (data) => {
         //printing console.log the html of the entire task card for troubleshooting
         // console.log(`This is the parent task of the task being marked done: ${data.target.parentNode.querySelector('.done-button')}`);
 
-        //hide Move Task button
+        //hide Status button.
         data.target.parentNode.querySelector('.done-button').setAttribute("hidden", true);
+
+        //changes done/status button into an x.
+        data.target.parentNode.querySelector('.done-button').outerHTML = `<button type="button" class="btn-close" aria-label="Close" value="Delete"></button>`;
+        
         //hide drop down list
         data.target.setAttribute("hidden", true);
 
@@ -214,7 +224,7 @@ const changeStatus = (data) => {
         //This appends the task card into the review column
         document.querySelector("#ReviewColumn").appendChild(parentTask);
 
-    } else if ((data.target.value.match("Doing"))) {
+    } else if (data.target.value.match("Doing")) {
 
         //console.log indicating that the button is successfully clicked
         // console.log("The clicker has been clicked!");
@@ -266,12 +276,38 @@ const changeStatus = (data) => {
         //adding the task card back into the To Do column of the task list
         document.querySelector("#ToDoColumn").appendChild(parentTask);
 
+    //this checks if the option selected was "Delete". There will be a pop up box asking if the user really wanted to delete the task item.
+    } else if (data.target.value.match("Delete")) {
+
+        if (window.confirm("Are you positive you want to delete this task? It cannot be undone.")) {
+            let id = Number(data.target.parentNode.parentNode.getAttribute("data-task-id"));
+            tm.deleteTask(id);
+            let parentTask = data.target.parentNode.parentNode;
+            //console.log out the code we are going to delete to debug and make sure it is the right one
+            // console.log(`Is this the right one to delete? ${parentTask.outerHTML}`);
+
+            //this removes the deleted task from the web page
+            parentTask.remove();
+
+        } else {
+            return;
+
+        }
+
     } else {
 
         //this prints to console when the change status button was changed or some error occured
         // console.log("A status was not changed.")
+        return;
     }
 
+    //this change the default in the popup status box to empty and hide th dropdown-menu once it is moved.
+    // console.log(data.target.className);
+    if (data.target.className = "dropdown-menu show") {
+        data.target.className = "dropdown-menu";
+        data.target.value = "";
+    }
+    
     //console.log to check to make sure the status attribute of the moved task card is changed
     // setTimeout(console.log(`This is the newly updated task status: ${data.target.parentNode.parentNode.getAttribute("task-status")}`), 10000);
 
@@ -288,6 +324,8 @@ const changeStatusOnList = (id, status) => {
 
 //This listens to a change in the drop down menu of the individual tasks in the task list
 taskList.addEventListener("change", changeStatus);
+taskList.querySelector("#DoneColumn").addEventListener("click", changeStatus);
+
 
 //this is a function that sets the form date to tomorrow's date. This will be the default value of our Task form due value.
 let defaultDate = () => {

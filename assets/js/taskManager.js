@@ -9,13 +9,15 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
         <div class="d-grid gap-2 d-md-flex justify-content-between">
             <h6 class="card-title text-warning">Due: ${dueDate}</h6>
 
-            <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Move Task</button>
+            <button class="btn btn-primary btn-sm dropdown-toggle done-button" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-bs-toggle="dropdown" aria-expanded="false">Status</button>
 
             <select class="dropdown-menu">
+            <option value=""></option>
             <option value="To Do">To Do</option>
             <option value="Doing">Doing</option>
             <option value="Review">Review</option>
             <option value="Done">Done</option>
+            <option value="Delete">Delete</option>
             </select>
 
         </div>
@@ -84,6 +86,11 @@ class TaskManager {
         //for loop to change the date format. It only does the latest added task list item.
         for (let i = x; i < this.tasks.length; i++) {
 
+            //this is necessary so that a deleted task will not render. If this isn't here, the program breaks because it will try to render a null item.
+            if (this.tasks[i] == null) {
+                continue;
+            }
+
             //variable to hold the current task object
             let taskVariable = this.tasks[i];
 
@@ -140,14 +147,14 @@ class TaskManager {
 
             //setting our string tasksHtml into the newCardHTML. Have to do this because appending our string straight onto the columns result in errors
             newCardHTML.innerHTML = tasksHtml;
-
+            
             //now we append our HTML into their respective task columns
             pointer.appendChild(newCardHTML);
         }
         //this calls the color function to make sure the cards are of the right color via boostrap
         this.statusColor();
 
-        this.hideButtonInDoneColumn();
+        this.changeDoneButton();
 
     }
 
@@ -171,13 +178,16 @@ class TaskManager {
         }
     }
 
-    //this goes and hide the done button when the item renders into the done column
-    hideButtonInDoneColumn () {
+    //this goes and changes the done button when the item renders into the done column. It turns into an x
+    changeDoneButton () {
         //This only happens for tasks going into the done column, this is to hide the task change button
         let buttons = document.querySelector('#DoneColumn').querySelectorAll('.done-button');
         //console.log(buttons);
         for (let i = 0; i < buttons.length; i++) {
-            buttons[i].setAttribute("hidden", true);
+            //sets the button into hidden. Disabled for now until group responds back on how they like to do it.
+            // buttons[i].setAttribute("hidden", true);
+            //changes the done button into an x that will allow the user to delete the task
+            buttons[i].outerHTML = `<button type="button" class="btn-close" aria-label="Close" value="Delete"></button>`;
         }
     }
     
@@ -209,5 +219,29 @@ class TaskManager {
             const currentId = localStorage.getItem('currentId');
             this.currentId = parseInt(currentId);
         }
+    }
+
+    //deletes a task using their ID
+    deleteTask (taskID) {
+        //create an array to hold the new list of task
+        let newTasks = [];
+        //array to hold the current version of the task list
+        let task = this.tasks;
+        //for loop to cycle through each task item, checks for their id, and if it matches, remove that from the this.task array
+        for (let i = 0; i < task.length; i++) {
+
+            //this is necessary so that the for loop will not bother with a deleted task. If this isn't here, the program breaks because it will try to copy a null item.
+            if (this.tasks[i] == null) {
+                continue;
+            }
+
+            //this checks if the task id of the deleted item matches the id of the task being cycled through
+            if (task[i].id !== taskID) {
+                newTasks.push(task[i]);
+            }
+        }
+
+        //new task list overwrites the original task list
+        this.tasks = newTasks;
     }
 }
