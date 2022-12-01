@@ -1,0 +1,26 @@
+{
+  "name": "task-planner-web-app",
+  "version": "1.0.0",
+  "description": "a task list application",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miss-Solomon/Task-Planner-Web-App.git"
+  },
+  "keywords": [
+    "task",
+    "list"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miss-Solomon/Task-Planner-Web-App/issues"
+  },
+  "homepage": "https://github.com/Miss-Solomon/Task-Planner-Web-App#readme",
+  "devDependencies": {
+    "mocha": "^10.1.0"
+  }
+}

@@ -97,11 +97,23 @@ class TaskManager {
             //setting a variable "date" to equal a formatted date variable from the taskVariable object
             let date = new Date(taskVariable.dueDate);
 
-            //changing the date variable to a string
-            let formattedDate = date.toString();
 
+            //The format done in Task 6 has an error where the due date is in utc and the actual due date becomes your local time zone due date, and so it doesn't match up. So this part is changed to a solution found online and the original is commented out
+
+            
+            console.log(`time3: ${date}`);
+            //changing the date variable to a string (From a previous task, buggy)
+            // let formattedDate = date.toDateString();
+
+            //found a better solution to the buggy task due date
+            let formattedDate = date.toLocaleString('en-US', {timeZone: "UTC", day: "2-digit", month: "short", year: "numeric", weekday: "short"});
+
+            console.log(`time: ${taskVariable.dueDate}`);
+            console.log(`time2: ${formattedDate}`);
             //changing the object's date into the formatted version of date
             taskVariable.dueDate = formattedDate;
+
+            
 
             //creating the html string version of the task list object
             let taskHtml = createTaskHtml(taskVariable.name, taskVariable.description, taskVariable.assignedTo, taskVariable.dueDate, taskVariable.status, taskVariable.id);
@@ -245,3 +257,7 @@ class TaskManager {
         this.tasks = newTasks;
     }
 }
+
+
+//export module for test.js
+module.exports = TaskManager;
