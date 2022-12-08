@@ -2,7 +2,7 @@
 
 General Objectives:
 
-+ Create a Task Planner web app from scratch.
++ Create a task planner web app from scratch using HTML, CSS, Bootstrap and Javascript.
 + Demonstrate the technical and non-technical skills developed during the Junior Web Developer program.
 
 Collaborators:
@@ -13,45 +13,23 @@ Collaborators:
 
 + [Simone Solomon](https://github.com/Miss-Solomon)
 
-+ [Sandra Okerulu](https://github.com/sandraokerulu) 
-
-+ [Kidanemariam Rozario](https://github.com/Rozariokid)
-
-Previous Collaborators:
+Previous Collaborator:
 
 + [Diana Fountaine](https://github.com/dianafountaine)
 
 
 Important Links:
 
-Final Project - Task Planner Web App [GitHub Repository](https://github.com/GenUSA-Learners/jwd-final-project).
+Final Project - Task Planner Web App [GitHub Repository](https://github.com/GenUSA-Learners/jwd-final-project)
 
-Moqups [Wireframe](https://app.moqups.com/QZt6Mwgr3eqnjAnnn2MkASAnZilW5Sgn/view/page/ad0fc2031).
+Moqups [Wireframe](https://app.moqups.com/QZt6Mwgr3eqnjAnnn2MkASAnZilW5Sgn/view/page/ad0fc2031)
 
-Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraEcL7FQjxeMVeDWfjbypYRcSrXCyAVPtHo/edit?usp=sharing).
+Assessment Criteria [Rubric](https://docs.google.com/spreadsheets/d/1pKK9KCnpraEcL7FQjxeMVeDWfjbypYRcSrXCyAVPtHo/edit?usp=sharing)
 
-## Create a new branch for your work
+## Completed Project
+https://glittering-semifreddo-f851e4.netlify.app
 
-<ol>
-  <li>Run git checkout -b branchname</li>
-</ol>
+## How To Use Task Planner
+How To Guide [Google Document](https://docs.google.com/document/d/1kY5CCSmVZg6cGwRgI0PLSQa41CMgQ9iW9ZUKAYQXfYs/edit?usp=sharing)
 
 
-## Need to pull new changes? Follow the steps below: 
-
-<ol>
-  <li>Run git checkout main</li>
-  <li>Run git pull</li>
-  <li>Run git checkout branchname</li>
-  <li>Run git merge main</li>
-</ol>
-
-## Done working on your branch? Follow these steps to add your code to the production (main) branch:
-
-<ol>
-  <li>Run git add filename or --all</li>
-  <li>Run git status to see changes</li>
-  <li>Run git commit -m "message"</li>
-  <li>Run git push origin branchname</li>
-  <li>Delete branch after merge</li>
-</ol>
