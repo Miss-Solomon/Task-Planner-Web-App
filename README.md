@@ -32,4 +32,9 @@ https://glittering-semifreddo-f851e4.netlify.app
 ## How To Use Task Planner
 How To Guide [Google Document](https://docs.google.com/document/d/1kY5CCSmVZg6cGwRgI0PLSQa41CMgQ9iW9ZUKAYQXfYs/edit?usp=sharing)
 
+## Wireframe
+
+![image](https://user-images.githubusercontent.com/99515145/206790376-991ca192-2082-4f56-ac2c-56a693ee3a20.png)
+
+
 
