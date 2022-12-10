@@ -1,5 +1,7 @@
 # Final Project - Task Planner Web App 
 
+![Group Project 1](https://user-images.githubusercontent.com/111025289/206831702-500d7229-4e20-4164-a710-6c0c1fef18c1.jpg)
+
 General Objectives:
 
 + Create a task planner web app from scratch using HTML, CSS, Bootstrap and Javascript.
@@ -16,6 +18,8 @@ Collaborators:
 Previous Collaborator:
 
 + [Diana Fountaine](https://github.com/dianafountaine)
+
+![Group 4](https://user-images.githubusercontent.com/111025289/206831747-bb9ea3a4-7e17-4cba-98b4-a07590ff01bd.jpg)
 
 
 Important Links:
